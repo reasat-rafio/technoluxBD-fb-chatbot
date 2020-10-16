@@ -1,9 +1,7 @@
 const dotenv = require("dotenv");
-const request = require("request");
-const {
-   sendMessage,
-   sendMessageWelcomeNewUser,
-} = require("../services/chatbotService");
+const { sendMessageWelcomeNewUser } = require("../services/chatbotService");
+const { sendMessage } = require("../services/chatboxSendMsg");
+
 const {
    handleSetupProfileAPI,
    getFacebookUsername,
@@ -135,8 +133,6 @@ let handlePostback = async (sender_psid, received_postback) => {
          break;
       case "GET_STARTED":
          await sendMessageWelcomeNewUser(sender_psid);
-         // let username = await getFacebookUsername(sender_psid);
-         // response = { text: `Hi ${username}. Welcome to TechnoluxBD` };
          break;
       default:
          console.log("run default switch");
@@ -146,7 +142,7 @@ let handlePostback = async (sender_psid, received_postback) => {
    // } else if (payload === "no") {
    // }
    // // Send the message to acknowledge the postback
-   // await sendMessage(sender_psid, response);
+   await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {

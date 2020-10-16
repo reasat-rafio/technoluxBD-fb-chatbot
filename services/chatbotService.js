@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const request = require("request");
-const { response } = require("express");
+const { sendMessage } = require("./chatboxSendMsg");
 const {
    getFacebookUsername,
    markMessageRead,
@@ -61,41 +61,6 @@ module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
          await sendMessage(sender_psid, response4);
 
          resolve("done");
-      } catch (err) {
-         reject(err);
-      }
-   });
-};
-
-module.exports.sendMessage = (sender_psid, response) => {
-   return new Promise(async (resolve, reject) => {
-      try {
-         await markMessageRead(sender_psid);
-         await sendTypingOn(sender_psid);
-         // Construct the message body
-         let request_body = {
-            recipient: {
-               id: sender_psid,
-            },
-            message: response,
-         };
-
-         // Send the HTTP request to the Messenger Platform
-         request(
-            {
-               uri: "https://graph.facebook.com/v6.0/me/messages",
-               qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-               method: "POST",
-               json: request_body,
-            },
-            (err, res, body) => {
-               if (!err) {
-                  resolve("message sent!");
-               } else {
-                  reject("Unable to send message:" + err);
-               }
-            }
-         );
       } catch (err) {
          reject(err);
       }
