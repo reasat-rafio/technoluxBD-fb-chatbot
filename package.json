@@ -1,24 +1,30 @@
 {
-  "name": "chat-bot-technolux",
-  "version": "1.0.0",
-  "description": "nessenger chatbot for techolux bd",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "messenger",
-    "facebook",
-    "bot",
-    "for",
-    "technolux",
-    "bd"
-  ],
-  "author": "rafio",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1"
-  }
+   "name": "chat-bot-technolux",
+   "version": "1.0.0",
+   "description": "nessenger chatbot for techolux bd",
+   "main": "server.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon --exec babel-node server.js"
+   },
+   "keywords": [
+      "messenger",
+      "facebook",
+      "bot",
+      "for",
+      "technolux",
+      "bd"
+   ],
+   "author": "rafio",
+   "license": "ISC",
+   "dependencies": {
+      "dotenv": "^8.2.0",
+      "ejs": "^3.1.5",
+      "express": "^4.17.1",
+      "nodemon": "^2.0.5"
+   },
+   "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-env": "^1.7.0"
+   }
 }
