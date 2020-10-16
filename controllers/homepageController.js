@@ -1,6 +1,10 @@
 const dotenv = require("dotenv");
 const request = require("request");
 const {
+   sendMessage,
+   sendMessageWelcomeNewUser,
+} = require("../services/chatbotService");
+const {
    handleSetupProfileAPI,
    getFacebookUsername,
    markMessageRead,
@@ -68,7 +72,7 @@ module.exports.postWebHook = (req, res) => {
 };
 
 // Handles messages events
-let handleMessage = (sender_psid, received_message) => {
+let handleMessage = async (sender_psid, received_message) => {
    let response;
 
    // Check if the message contains text
@@ -110,7 +114,7 @@ let handleMessage = (sender_psid, received_message) => {
    }
 
    // Sends the response message
-   callSendAPI(sender_psid, response);
+   await sendMessage(sender_psid, response);
 };
 
 // Handles messaging_postbacks events
@@ -130,8 +134,9 @@ let handlePostback = async (sender_psid, received_postback) => {
          response = { text: "Oops, try sending another image." };
          break;
       case "GET_STARTED":
-         let username = await getFacebookUsername(sender_psid);
-         response = { text: `Hi ${username}. Welcome to TechnoluxBD` };
+         await sendMessageWelcomeNewUser(sender_psid);
+         // let username = await getFacebookUsername(sender_psid);
+         // response = { text: `Hi ${username}. Welcome to TechnoluxBD` };
          break;
       default:
          console.log("run default switch");
@@ -141,38 +146,7 @@ let handlePostback = async (sender_psid, received_postback) => {
    } else if (payload === "no") {
    }
    // Send the message to acknowledge the postback
-   callSendAPI(sender_psid, response);
-};
-
-// Sends response messages via the Send API
-let callSendAPI = async (sender_psid, response) => {
-
-   await markMessageRead(sender_psid)
-   await sendTypingOn(sender_psid)
-   // Construct the message body
-   let request_body = {
-      recipient: {
-         id: sender_psid,
-      },
-      message: response,
-   };
-
-   // Send the HTTP request to the Messenger Platform
-   request(
-      {
-         uri: "https://graph.facebook.com/v6.0/me/messages",
-         qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-         method: "POST",
-         json: request_body,
-      },
-      (err, res, body) => {
-         if (!err) {
-            console.log("message sent!");
-         } else {
-            console.error("Unable to send message:" + err);
-         }
-      }
-   );
+   await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {
