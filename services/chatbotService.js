@@ -1,7 +1,11 @@
 const dotenv = require("dotenv");
 const request = require("request");
 const { response } = require("express");
-const { getFacebookUsername } = require("./homePageService");
+const {
+   getFacebookUsername,
+   markMessageRead,
+   sendTypingOn,
+} = require("./homePageService");
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
