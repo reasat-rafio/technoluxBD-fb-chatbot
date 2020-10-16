@@ -142,11 +142,11 @@ let handlePostback = async (sender_psid, received_postback) => {
          console.log("run default switch");
    }
 
-   if (payload === "yes") {
-   } else if (payload === "no") {
-   }
-   // Send the message to acknowledge the postback
-   await sendMessage(sender_psid, response);
+   // if (payload === "yes") {
+   // } else if (payload === "no") {
+   // }
+   // // Send the message to acknowledge the postback
+   // await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {
