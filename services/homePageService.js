@@ -1,4 +1,6 @@
 const request = require("request");
+const dotenv = require("dotenv");
+dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 

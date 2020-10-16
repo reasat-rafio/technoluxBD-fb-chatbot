@@ -116,10 +116,23 @@ let handlePostback = (sender_psid, received_postback) => {
    let payload = received_postback.payload;
 
    // Set the response based on the postback payload
+
+   switch (payload) {
+      case "yes":
+         response = { text: "Thanks!" };
+         break;
+      case "no":
+         response = { text: "Oops, try sending another image." };
+         break;
+      case "GET_STARTED":
+         response = { text: "hi there. Welcome to my Tech Shop Page" };
+         break;
+      default:
+         console.log("run default switch");
+   }
+
    if (payload === "yes") {
-      response = { text: "Thanks!" };
    } else if (payload === "no") {
-      response = { text: "Oops, try sending another image." };
    }
    // Send the message to acknowledge the postback
    callSendAPI(sender_psid, response);
@@ -160,6 +173,10 @@ module.exports.handleSetupFunction = async (req, res) => {
    } catch (err) {
       console.log(err);
    }
+};
+
+module.exports.getSetupProfilePage = (req, res) => {
+   res.render("profile.ejs");
 };
 
 // curl -X GET "localhost:8080/webhook?hub.verify_token=itIsAsdasd&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
