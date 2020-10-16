@@ -1,9 +1,13 @@
 const dotenv = require("dotenv");
+const { backToCategories } = require("../services/backToCategories");
 const {
    sendMessageWelcomeNewUser,
    sendCategories,
    sendLookupOrder,
    requestTalkToAdmin,
+   showHeadphones,
+   showConsoles,
+   showControllers,
 } = require("../services/chatbotService");
 const { sendMessage } = require("../services/chatboxSendMsg");
 
@@ -149,15 +153,31 @@ let handlePostback = async (sender_psid, received_postback) => {
    // Set the response based on the postback payload
 
    switch (payload) {
-      case "yes":
-         response = { text: "Thanks!" };
-         break;
-      case "no":
-         response = { text: "Oops, try sending another image." };
-         break;
       case "GET_STARTED":
+      case "RESTART_CONVERSATION":
          await sendMessageWelcomeNewUser(sender_psid);
          break;
+
+      case "TALK_ADMIN":
+         await requestTalkToAdmin(sender_psid);
+         break;
+
+      case "SHOW_HEADPHONES":
+         await showHeadphones(sender_psid);
+         break;
+
+      case "SHOW_CONTROLLERS":
+         await showControllers(sender_psid);
+         break;
+
+      case "SHOW_CONSOLES":
+         await showConsoles(sender_psid);
+         break;
+
+      case "BACK_TO_CATEGORIES":
+         await backToCategories(sender_psid);
+         break;
+
       default:
          console.log("run default switch");
    }

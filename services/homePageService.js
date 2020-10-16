@@ -20,12 +20,12 @@ module.exports.handleSetupProfileAPI = () => {
                      {
                         type: "postback",
                         title: "Talk to an agent",
-                        payload: "CARE_HELP",
+                        payload: "TALK_ADMIN",
                      },
                      {
                         type: "postback",
                         title: "Restart this conversation",
-                        payload: "CURATION",
+                        payload: "RESTART_CONVERSATION",
                      },
                      {
                         type: "web_url",

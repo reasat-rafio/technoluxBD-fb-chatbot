@@ -1,6 +1,12 @@
 const dotenv = require("dotenv");
 const request = require("request");
 const { sendMessage } = require("./chatboxSendMsg");
+
+const {
+   sendCategoriesTemplate,
+   sendHeadphonesTemplate,
+} = require("./templateMessage");
+
 const {
    getFacebookUsername,
    markMessageRead,
@@ -71,90 +77,7 @@ module.exports.sendCategories = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
       try {
          //   send a generic template
-         let response = {
-            attachment: {
-               type: "template",
-               payload: {
-                  template_type: "generic",
-                  elements: [
-                     {
-                        title: "Headphone",
-                        image_url:
-                           "https://images.unsplash.com/photo-1520170350707-b2da59970118?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80",
-                        subtitle: "We have the right Headphones for everyone.",
-                        default_action: {
-                           type: "web_url",
-                           url:
-                              "https://petersfancybrownhats.com/view?item=103",
-                           webview_height_ratio: "tall",
-                        },
-                        buttons: [
-                           {
-                              type: "web_url",
-                              url: "https://petersfancybrownhats.com",
-                              title: "View on Website",
-                           },
-                           {
-                              type: "postback",
-                              title: "Show Headphones",
-                              payload: "DEVELOPER_DEFINED_PAYLOAD",
-                           },
-                        ],
-                     },
-
-                     {
-                        title: "Controller",
-                        image_url:
-                           "https://images.unsplash.com/photo-1585881728919-5c0ce925ad10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-                        subtitle: "We have the right controller for everyone.",
-                        default_action: {
-                           type: "web_url",
-                           url:
-                              "https://petersfancybrownhats.com/view?item=103",
-                           webview_height_ratio: "tall",
-                        },
-                        buttons: [
-                           {
-                              type: "web_url",
-                              url: "https://petersfancybrownhats.com",
-                              title: "View Website",
-                           },
-                           {
-                              type: "postback",
-                              title: "Show Controllers",
-                              payload: "DEVELOPER_DEFINED_PAYLOAD",
-                           },
-                        ],
-                     },
-
-                     {
-                        title: "Console",
-                        image_url:
-                           "https://images.unsplash.com/photo-1588495752527-77d65c21f7cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                        subtitle: "We have the right Console for everyone.",
-                        default_action: {
-                           type: "web_url",
-                           url:
-                              "https://petersfancybrownhats.com/view?item=103",
-                           webview_height_ratio: "tall",
-                        },
-                        buttons: [
-                           {
-                              type: "web_url",
-                              url: "https://petersfancybrownhats.com",
-                              title: "View Website",
-                           },
-                           {
-                              type: "postback",
-                              title: "Show Consoles",
-                              payload: "DEVELOPER_DEFINED_PAYLOAD",
-                           },
-                        ],
-                     },
-                  ],
-               },
-            },
-         };
+         let response = sendCategoriesTemplate();
          await sendMessage(sender_psid, response);
          resolve("done!");
       } catch (err) {
@@ -174,6 +97,37 @@ module.exports.sendLookupOrder = (sender_psid) => {
 };
 
 module.exports.requestTalkToAdmin = (sender_psid) => {
+   return new Promise((resolve, reject) => {
+      try {
+         resolve("done");
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.showHeadphones = (sender_psid) => {
+   return new Promise(async (resolve, reject) => {
+      try {
+         let response = sendHeadphonesTemplate();
+         await sendMessage(sender_psid, response);
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.showConsoles = (sender_psid) => {
+   return new Promise(async (resolve, reject) => {
+      try {
+         resolve("done");
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.showControllers = (sender_psid) => {
    return new Promise((resolve, reject) => {
       try {
          resolve("done");
