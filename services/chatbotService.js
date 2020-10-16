@@ -78,10 +78,10 @@ module.exports.sendCategories = (sender_psid) => {
                   template_type: "generic",
                   elements: [
                      {
-                        title: "Welcome1",
+                        title: "Headphone",
                         image_url:
-                           "https://petersfancybrownhats.com/company_image.png",
-                        subtitle: "We have the right hat for everyone.",
+                           "https://images.unsplash.com/photo-1520170350707-b2da59970118?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80",
+                        subtitle: "We have the right Headphones for everyone.",
                         default_action: {
                            type: "web_url",
                            url:
@@ -92,21 +92,21 @@ module.exports.sendCategories = (sender_psid) => {
                            {
                               type: "web_url",
                               url: "https://petersfancybrownhats.com",
-                              title: "View Website",
+                              title: "View on Website",
                            },
                            {
                               type: "postback",
-                              title: "Start Chatting",
+                              title: "Show Headphones",
                               payload: "DEVELOPER_DEFINED_PAYLOAD",
                            },
                         ],
                      },
 
                      {
-                        title: "Welcome2",
+                        title: "Controller",
                         image_url:
-                           "https://petersfancybrownhats.com/company_image.png",
-                        subtitle: "We have the right hat for everyone.",
+                           "https://images.unsplash.com/photo-1585881728919-5c0ce925ad10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+                        subtitle: "We have the right controller for everyone.",
                         default_action: {
                            type: "web_url",
                            url:
@@ -121,17 +121,17 @@ module.exports.sendCategories = (sender_psid) => {
                            },
                            {
                               type: "postback",
-                              title: "Start Chatting",
+                              title: "Show Controllers",
                               payload: "DEVELOPER_DEFINED_PAYLOAD",
                            },
                         ],
                      },
 
                      {
-                        title: "Welcome3",
+                        title: "Console",
                         image_url:
-                           "https://petersfancybrownhats.com/company_image.png",
-                        subtitle: "We have the right hat for everyone.",
+                           "https://images.unsplash.com/photo-1588495752527-77d65c21f7cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                        subtitle: "We have the right Console for everyone.",
                         default_action: {
                            type: "web_url",
                            url:
@@ -146,7 +146,7 @@ module.exports.sendCategories = (sender_psid) => {
                            },
                            {
                               type: "postback",
-                              title: "Start Chatting",
+                              title: "Show Consoles",
                               payload: "DEVELOPER_DEFINED_PAYLOAD",
                            },
                         ],
