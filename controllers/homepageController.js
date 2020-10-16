@@ -3,6 +3,8 @@ const request = require("request");
 const {
    handleSetupProfileAPI,
    getFacebookUsername,
+   markMessageRead,
+   sendTypingOn,
 } = require("../services/homePageService");
 dotenv.config({ path: "../config/config.env" });
 
@@ -143,7 +145,10 @@ let handlePostback = async (sender_psid, received_postback) => {
 };
 
 // Sends response messages via the Send API
-let callSendAPI = (sender_psid, response) => {
+let callSendAPI = async (sender_psid, response) => {
+
+   await markMessageRead(sender_psid)
+   await sendTypingOn(sender_psid)
    // Construct the message body
    let request_body = {
       recipient: {

@@ -87,3 +87,71 @@ module.exports.getFacebookUsername = (sender_psid) => {
       }
    });
 };
+
+module.exports.sendTypingOn = (sender_psid) => {
+   return new Promise((resolve, reject) => {
+      try {
+         let request_body = {
+            recipient: {
+               id: sender_psid,
+            },
+            sender_action: "typing_on",
+         };
+
+         let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+
+         request(
+            {
+               uri: url,
+               method: "POST",
+               json: request_body,
+            },
+            (err, res, body) => {
+               if (!err) {
+                  // body = JSON.parse(body);
+                  // let username = `${body.first_name} ${body.last_name} `;
+                  resolve("done!");
+               } else {
+                  reject("Unable to send message:" + err);
+               }
+            }
+         );
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.markMessageRead = (sender_psid) => {
+   return new Promise((resolve, reject) => {
+      try {
+         let request_body = {
+            recipient: {
+               id: sender_psid,
+            },
+            sender_action: "mark_seen",
+         };
+
+         let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+
+         request(
+            {
+               uri: url,
+               method: "POST",
+               json: request_body,
+            },
+            (err, res, body) => {
+               if (!err) {
+                  // body = JSON.parse(body);
+                  // let username = `${body.first_name} ${body.last_name} `;
+                  resolve("done!");
+               } else {
+                  reject("Unable to send message:" + err);
+               }
+            }
+         );
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
