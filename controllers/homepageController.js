@@ -129,7 +129,7 @@ let handlePostback = async (sender_psid, received_postback) => {
          break;
       case "GET_STARTED":
          let username = await getFacebookUsername(sender_psid);
-         response = { text: `hi ${username}. Welcome to TechnoluxBD` };
+         response = { text: `Hi ${username}. Welcome to TechnoluxBD` };
          break;
       default:
          console.log("run default switch");
