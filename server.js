@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -9,6 +10,8 @@ const web = require("./routes/web");
 
 // Middleware
 app.use(express.static("./public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set ejs as view engin
 app.set("view engine", "ejs");
