@@ -1,5 +1,10 @@
 const dotenv = require("dotenv");
-const { sendMessageWelcomeNewUser } = require("../services/chatbotService");
+const {
+   sendMessageWelcomeNewUser,
+   sendCategories,
+   sendLookupOrder,
+   requestTalkToAdmin,
+} = require("../services/chatbotService");
 const { sendMessage } = require("../services/chatboxSendMsg");
 
 const {
@@ -71,6 +76,25 @@ module.exports.postWebHook = (req, res) => {
 
 // Handles messages events
 let handleMessage = async (sender_psid, received_message) => {
+   //Check the incoming msg is quick replay?
+   if (
+      received_message &&
+      received_message.quick_reply &&
+      received_message.quick_reply.payload
+   ) {
+      let payload = received_message.quick_reply.payload;
+
+      if (payload === "CATEGORIES") {
+         await sendCategories(sender_psid);
+      } else if (payload === "LOOKUP_ORDER") {
+         await sendLookupOrder(sender_psid);
+      } else if (payload === "TALK_ADMIN") {
+         await requestTalkToAdmin(sender_psid);
+      }
+
+      return;
+   }
+
    let response;
 
    // Check if the message contains text

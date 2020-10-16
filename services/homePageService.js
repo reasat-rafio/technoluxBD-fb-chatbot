@@ -24,13 +24,20 @@ module.exports.handleSetupProfileAPI = () => {
                      },
                      {
                         type: "postback",
-                        title: "Outfit suggestions",
+                        title: "Restart this conversation",
                         payload: "CURATION",
                      },
                      {
                         type: "web_url",
-                        title: "Shop now",
+                        title: "View facebook fan page",
                         url: "https://www.originalcoastclothing.com/",
+                        webview_height_ratio: "full",
+                     },
+                     {
+                        type: "web_url",
+                        title: "View YouTube channel",
+                        url:
+                           "https://www.youtube.com/channel/UCH4WQMyJpp1X6TsNSVSokoA",
                         webview_height_ratio: "full",
                      },
                   ],
