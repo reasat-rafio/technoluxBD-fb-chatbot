@@ -1,6 +1,9 @@
 const dotenv = require("dotenv");
 const request = require("request");
-const { handleSetupProfileAPI } = require("../services/homePageService");
+const {
+   handleSetupProfileAPI,
+   getFacebookUsername,
+} = require("../services/homePageService");
 dotenv.config({ path: "../config/config.env" });
 
 module.exports.getHomepage = (req, res) => {
@@ -109,7 +112,7 @@ let handleMessage = (sender_psid, received_message) => {
 };
 
 // Handles messaging_postbacks events
-let handlePostback = (sender_psid, received_postback) => {
+let handlePostback = async (sender_psid, received_postback) => {
    let response;
 
    // Get the payload for the postback
@@ -125,7 +128,8 @@ let handlePostback = (sender_psid, received_postback) => {
          response = { text: "Oops, try sending another image." };
          break;
       case "GET_STARTED":
-         response = { text: "hi there. Welcome to my Tech Shop Page" };
+         let username = await getFacebookUsername(sender_psid);
+         response = { text: `hi ${username}. Welcome to TechnoluxBD"` };
          break;
       default:
          console.log("run default switch");

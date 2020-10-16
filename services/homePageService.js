@@ -59,3 +59,31 @@ module.exports.handleSetupProfileAPI = () => {
       }
    });
 };
+
+module.exports.getFacebookUsername = (sender_psid) => {
+   return new Promise((resolve, reject) => {
+      try {
+         // curl -X GET ""
+
+         // Send the HTTP request to the Messenger Platform
+         let url = `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`;
+         request(
+            {
+               uri: url,
+               method: "GET",
+            },
+            (err, res, body) => {
+               if (!err) {
+                  body = JSON.parse(body);
+                  let username = `${body.last_name} ${body.first_name}`;
+                  resolve(username);
+               } else {
+                  reject("Unable to send message:" + err);
+               }
+            }
+         );
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
