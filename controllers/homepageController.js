@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const request = require("request");
-
+const { handleSetupProfileAPI } = require("../services/homePageService");
 dotenv.config({ path: "../config/config.env" });
 
 module.exports.getHomepage = (req, res) => {
@@ -151,6 +151,15 @@ let callSendAPI = (sender_psid, response) => {
          }
       }
    );
+};
+
+module.exports.handleSetupFunction = async (req, res) => {
+   try {
+      await handleSetupProfileAPI();
+      res.redirect("/");
+   } catch (err) {
+      console.log(err);
+   }
 };
 
 // curl -X GET "localhost:8080/webhook?hub.verify_token=itIsAsdasd&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
