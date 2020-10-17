@@ -115,30 +115,40 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
          // await passThreadControl(sender_psid);
          ///////////
 
-         let request_body = {
-            recipient: {
-               id: sender_psid,
-            },
-            target_app_id: SECONDARY_RECEIVER_ID,
-            metadata: "String to pass to secondary receiver app",
-         };
+         new Promise((resolve, reject) => {
+            try {
+               // Construct the message body
+               let request_body = {
+                  recipient: {
+                     id: sender_psid,
+                  },
+                  target_app_id: SECONDARY_RECEIVER_ID,
+                  metadata: "String to pass to secondary receiver app",
+               };
 
-         // Send the HTTP request to the Messenger Platform
-         request(
-            {
-               uri: "https://graph.facebook.com/v6.0/me/pass_thread_control",
-               qs: { access_token: PAGE_ACCESS_TOKEN },
-               method: "POST",
-               json: request_body,
-            },
-            (err, res, body) => {
-               if (!err) {
-                  resolve("message sent!");
-               } else {
-                  reject("Unable to send message:" + err);
-               }
+               // Send the HTTP request to the Messenger Platform
+               request(
+                  {
+                     uri:
+                        "https://graph.facebook.com/v6.0/me/pass_thread_control",
+                     qs: { access_token: PAGE_ACCESS_TOKEN },
+                     method: "POST",
+                     json: request_body,
+                  },
+                  (err, res, body) => {
+                     if (!err) {
+                        resolve("message sent!");
+                     } else {
+                        reject("Unable to send message:" + err);
+                     }
+                  }
+               );
+               // resolve("done!");
+            } catch (e) {
+               console.log("err", e);
+               reject(e);
             }
-         );
+         });
 
          /////////////
          resolve("done!");
