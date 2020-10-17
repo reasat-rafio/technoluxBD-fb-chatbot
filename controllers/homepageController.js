@@ -201,7 +201,6 @@ let handlePostback = async (sender_psid, received_postback) => {
    // } else if (payload === "no") {
    // }
    // // Send the message to acknowledge the postback
-   await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {
