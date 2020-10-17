@@ -74,10 +74,11 @@ function handleClickButtonFindOrder() {
       let data = {
          psid: $("#psid").val(),
          customerName: $("#customerName").val(),
-         phoneNumber: $("#number").val(),
-         orderNumber: $("orderNumber").val(),
+         phoneNumber: $("#customerNumber").val(),
+         orderNumber: $("#orderNumber").val(),
          address: $("#address").val(),
       };
+
       if (!check) {
          //  Close web view
          MessengerExtensions.requestCloseBrowser(
