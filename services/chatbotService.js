@@ -112,59 +112,12 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
 
          await sendMessage(sender_psid, response1);
          // Change the conversation to a page inbox
-         await passThreadControl(sender_psid);
-         ///////////
+         let app = "page_inbox";
+         await passThreadControl(sender_psid, app);
 
-         /////////////
          resolve("done!");
       } catch (err) {
          reject(err);
-      }
-   });
-};
-
-let passThreadControl = (sender_psid, app) => {
-   return new Promise((resolve, reject) => {
-      try {
-         let target_app_id = "";
-         let metadata = "";
-
-         if (app === "page_inbox") {
-            target_app_id = SECONDARY_RECEIVER_ID;
-            metadata = "Pass thread control to inbox chat";
-         }
-         if (app === "primary") {
-            target_app_id = PRIMARY_RECEIVER_ID;
-            metadata = "Pass thread control to the bot, primary app";
-         }
-         // Construct the message body
-         let request_body = {
-            recipient: {
-               id: sender_psid,
-            },
-            target_app_id: target_app_id,
-            metadata: metadata,
-         };
-
-         // Send the HTTP request to the Messenger Platform
-         request(
-            {
-               uri: "https://graph.facebook.com/v6.0/me/pass_thread_control",
-               qs: { access_token: PAGE_ACCESS_TOKEN },
-               method: "POST",
-               json: request_body,
-            },
-            (err, res, body) => {
-               console.log(body);
-               if (!err) {
-                  resolve("message sent!");
-               } else {
-                  reject("Unable to send message:" + err);
-               }
-            }
-         );
-      } catch (e) {
-         reject(e);
       }
    });
 };
