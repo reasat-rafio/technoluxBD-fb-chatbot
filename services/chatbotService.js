@@ -5,6 +5,8 @@ const { sendMessage } = require("./chatboxSendMsg");
 const {
    sendCategoriesTemplate,
    sendHeadphonesTemplate,
+   sendLookUpTemplate,
+   backToMainMenuTemplate,
 } = require("./templateMessage");
 
 const {
@@ -87,8 +89,10 @@ module.exports.sendCategories = (sender_psid) => {
 };
 
 module.exports.sendLookupOrder = (sender_psid) => {
-   return new Promise((resolve, reject) => {
+   return new Promise(async (resolve, reject) => {
       try {
+         let response = sendLookUpTemplate();
+         await sendMessage(sender_psid, response);
          resolve("done!");
       } catch (err) {
          reject(err);
@@ -131,7 +135,29 @@ module.exports.showConsoles = (sender_psid) => {
 module.exports.showControllers = (sender_psid) => {
    return new Promise((resolve, reject) => {
       try {
-         resolve("done");
+         resolve("done!");
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.setInfoOrderByWebView = (sender_psid) => {
+   return new Promise((resolve, reject) => {
+      try {
+         resolve("done!");
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
+
+module.exports.backToMainMenu = (sender_psid) => {
+   return new Promise(async (resolve, reject) => {
+      try {
+         let response = backToMainMenuTemplate();
+         await sendMessage(sender_psid, response);
+         resolve("done!");
       } catch (err) {
          reject(err);
       }

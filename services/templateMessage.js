@@ -112,6 +112,11 @@ module.exports.sendHeadphonesTemplate = () => {
                         title: "Back to catagories",
                         payload: "BACK_TO_CATEGORIES",
                      },
+                     {
+                        type: "postback",
+                        title: "Main menu",
+                        payload: "BACK_TO_MAIN_MENU",
+                     },
                   ],
                },
 
@@ -136,6 +141,11 @@ module.exports.sendHeadphonesTemplate = () => {
                         title: "Back to catagories",
                         payload: "BACK_TO_CATEGORIES",
                      },
+                     {
+                        type: "postback",
+                        title: "Main menu",
+                        payload: "BACK_TO_MAIN_MENU",
+                     },
                   ],
                },
 
@@ -159,6 +169,11 @@ module.exports.sendHeadphonesTemplate = () => {
                         title: "Back to catagories",
                         payload: "BACK_TO_CATEGORIES",
                      },
+                     {
+                        type: "postback",
+                        title: "Main menu",
+                        payload: "BACK_TO_MAIN_MENU",
+                     },
                   ],
                },
             ],
@@ -166,4 +181,53 @@ module.exports.sendHeadphonesTemplate = () => {
       },
    };
    return response;
+};
+
+module.exports.sendLookUpTemplate = () => {
+   let response = {
+      attachment: {
+         type: "template",
+         payload: {
+            template_type: "button",
+            text:
+               "Give us the info about your order, so we won't need to ask for it again in the future.",
+            buttons: [
+               {
+                  type: "postback",
+                  title: "Set info",
+                  payload: "SET_INFO_ORDER",
+               },
+               {
+                  type: "postback",
+                  title: "Main menu",
+                  payload: "BACK_TO_MAIN_MENU",
+               },
+            ],
+         },
+      },
+   };
+   return response;
+};
+
+module.exports.backToMainMenuTemplate = () => {
+   return {
+      text: "What can i do to help you today?",
+      quick_replies: [
+         {
+            content_type: "text",
+            title: "Categories",
+            payload: "CATEGORIES",
+         },
+         {
+            content_type: "text",
+            title: "Lookup Order",
+            payload: "LOOKUP_ORDER",
+         },
+         {
+            content_type: "text",
+            title: "Talk to an admin",
+            payload: "TALK_ADMIN",
+         },
+      ],
+   };
 };

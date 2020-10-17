@@ -8,6 +8,8 @@ const {
    showHeadphones,
    showConsoles,
    showControllers,
+   setInfoOrderByWebView,
+   backToMainMenu,
 } = require("../services/chatbotService");
 const { sendMessage } = require("../services/chatboxSendMsg");
 
@@ -145,8 +147,7 @@ let handleMessage = async (sender_psid, received_message) => {
 
 // Handles messaging_postbacks events
 let handlePostback = async (sender_psid, received_postback) => {
-   let response;
-
+   // let response;
    // Get the payload for the postback
    let payload = received_postback.payload;
 
@@ -181,6 +182,13 @@ let handlePostback = async (sender_psid, received_postback) => {
          await backToCategories(sender_psid);
          break;
 
+      case "SET_INFO_ORDER":
+         await setInfoOrderByWebView(sender_psid);
+         break;
+
+      case "BACK_TO_MAIN_MENU":
+         await backToMainMenu(sender_psid);
+         break;
       default:
          console.log("run default switch");
    }
