@@ -55,9 +55,9 @@ module.exports.passThreadControl = (sender_psid) => {
          // Construct the message body
          let request_body = {
             recipient: {
-               id: SECONDARY_RECEIVER_ID,
+               id: sender_psid,
             },
-            target_app_id: response,
+            target_app_id: SECONDARY_RECEIVER_ID,
             metadata: "String to pass to secondary receiver app",
          };
 
