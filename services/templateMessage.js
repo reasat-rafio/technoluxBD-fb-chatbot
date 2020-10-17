@@ -1,3 +1,7 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: "../config/config.env" });
+const URL_WEB_VIEW_ORDER = process.env.URL_WEB_VIEW_ORDER;
+
 module.exports.sendCategoriesTemplate = () => {
    let response = {
       attachment: {
@@ -194,7 +198,7 @@ module.exports.sendLookUpTemplate = () => {
             buttons: [
                {
                   type: "web_url",
-                  url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                  url: `${URL_WEB_VIEW_ORDER}`,
                   title: "Give Us Your Info",
                   webview_height_ratio: "tall",
                   messenger_extensions: true,

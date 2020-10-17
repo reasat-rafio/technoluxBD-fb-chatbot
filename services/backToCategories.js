@@ -36,6 +36,7 @@ module.exports.passThreadControl = (sender_psid) => {
                }
             }
          );
+         resolve("done!");
       } catch (err) {
          reject(err);
       }
