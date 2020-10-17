@@ -254,4 +254,5 @@ module.exports.setInfoOrderTemplate = () => {
          },
       },
    };
+   return response;
 };
