@@ -76,7 +76,7 @@ module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
 module.exports.sendCategories = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
       try {
-         //   send a generic template
+         //  send a generic template
          let response = sendCategoriesTemplate();
          await sendMessage(sender_psid, response);
          resolve("done!");
@@ -111,6 +111,7 @@ module.exports.showHeadphones = (sender_psid) => {
       try {
          let response = sendHeadphonesTemplate();
          await sendMessage(sender_psid, response);
+         resolve("done!");
       } catch (err) {
          reject(err);
       }
