@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+         rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+         crossorigin="anonymous"
+      />
+      <link rel="shortcut icon" href="#" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="/css/style.css" />
+
+      <script>
+         let facebookAppId = "<%= facebookAppId %>";
+      </script>
+
+      <script src="/js/order.js"></script>
+
+      <title>Info lookup order</title>
+   </head>
+   <body>
+      <div class="container fix-height">
+         <div class="row">
+            <div class="col-12">
+               <div class="text-center mt-3">
+                  <span class="title">Order lookup</span>
+               </div>
+               <input type="text" id="psid" hidden />
+               <div class="form-group">
+                  <label for="customerName"
+                     >Name (<span style="color: red">*</span>):</label
+                  >
+                  <input
+                     required
+                     type="text"
+                     id="customerName"
+                     class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                     Please fill out the correct number
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="customerNumber"
+                     >Phone number (<span style="color: red">*</span>):</label
+                  >
+                  <input
+                     required
+                     type="text"
+                     id="customerNumber"
+                     class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                     Please fill out your phone number
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label for="address"
+                     >Address (<span style="color: red">*</span>):</label
+                  >
+                  <input
+                     required
+                     placeholder="e.g. House# Road/Block# Badda,Dhaka-1212"
+                     type="text"
+                     id="address"
+                     class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                     Please fill out your address
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label for="orderNumber"
+                     >Order number (<span style="color: red">*</span>):</label
+                  >
+                  <input
+                     required
+                     type="text"
+                     id="orderNumber"
+                     class="form-control"
+                  />
+                  <div class="invalid-feedback">
+                     Please fill out your order number
+                  </div>
+               </div>
+
+               <button class="btn btn-primary" id="btnFindOrder">
+                  CONFIRM ORDER
+               </button>
+            </div>
+         </div>
+      </div>
+      <footer>
+         <div class="text-center">
+            <div class="">
+               <span class="mr-3">© TechnoluxBD</span>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>

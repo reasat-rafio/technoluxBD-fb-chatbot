@@ -5,6 +5,8 @@ const {
    postWebHook,
    handleSetupFunction,
    getSetupProfilePage,
+   getInfoOrderPage,
+   setInfoOrder,
 } = require("../controllers/homepageController");
 const router = Router();
 
@@ -17,5 +19,9 @@ router.post("/webhook", postWebHook);
 router.post("/set-up-profile", handleSetupFunction);
 
 router.get("/set-up-profile", getSetupProfilePage);
+
+router.get("/info-order", getInfoOrderPage);
+
+router.post("/set-info-order", setInfoOrder);
 
 module.exports = router;

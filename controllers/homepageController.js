@@ -213,4 +213,17 @@ module.exports.getSetupProfilePage = (req, res) => {
    res.render("profile.ejs");
 };
 
+module.exports.getInfoOrderPage = (req, res) => {
+   let facebookAppId = process.env.FACEBOOK_APP_ID;
+   return res.render("infoOrder.ejs", {
+      facebookAppId,
+   });
+};
+
+module.exports.setInfoOrder = (req, res) => {
+   return res.status(200).json({
+      message: "ok",
+   });
+};
+
 // curl -X GET "localhost:8080/webhook?hub.verify_token=itIsAsdasd&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"

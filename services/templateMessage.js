@@ -193,9 +193,11 @@ module.exports.sendLookUpTemplate = () => {
                "Give us the info about your order, so we won't need to ask for it again in the future.",
             buttons: [
                {
-                  type: "postback",
-                  title: "Set info",
-                  payload: "SET_INFO_ORDER",
+                  type: "web_url",
+                  url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                  title: "Info Lookup Order",
+                  webview_height_ratio: "tall",
+                  messenger_extensions: true,
                },
                {
                   type: "postback",
