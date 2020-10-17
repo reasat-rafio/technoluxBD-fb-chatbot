@@ -195,7 +195,7 @@ module.exports.sendLookUpTemplate = () => {
                {
                   type: "web_url",
                   url: `${process.env.URL_WEB_VIEW_ORDER}`,
-                  title: "Info Lookup Order",
+                  title: "Give Us Your Info",
                   webview_height_ratio: "tall",
                   messenger_extensions: true,
                },

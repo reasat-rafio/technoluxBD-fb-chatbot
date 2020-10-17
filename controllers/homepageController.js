@@ -220,10 +220,33 @@ module.exports.getInfoOrderPage = (req, res) => {
    });
 };
 
-module.exports.setInfoOrder = (req, res) => {
-   return res.status(200).json({
-      message: "ok",
-   });
+module.exports.setInfoOrder = async (req, res) => {
+   try {
+      let customerName = "";
+      if (req.body.customerName === "") {
+         customerName = "Empty";
+      } else customerName = req.body.customerName;
+
+      let response1 = {
+         text: `--- Info about your lookup order ---
+         \n\nCustomer name: ${customerName}
+         \nPhone Number: ${req.body.phoneNumber}
+         \nAddress: ${req.body.address}
+         \nOrder number: ${req.body.orderNumber}`,
+      };
+      let response2 = {
+         text: `We're checking your order. We will send you a message when the process is complete
+         Thank You!
+         `,
+      };
+      await chatbotService.sendMessage(req.body.psid, response1);
+      await chatbotService.sendMessage(req.body.psid, response2);
+      return res.status(200).json({
+         message: "ok",
+      });
+   } catch (err) {
+      console.log(err);
+   }
 };
 
 // curl -X GET "localhost:8080/webhook?hub.verify_token=itIsAsdasd&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
