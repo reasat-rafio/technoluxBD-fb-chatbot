@@ -2,6 +2,8 @@ const { sendCategories } = require("./chatbotService");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
 
+const SECONDARY_RECEIVER_ID = process.env.SECONDARY_RECEIVER_ID;
+
 module.exports.backToCategories = (sender_psid) => {
    sendCategories(sender_psid);
 };
@@ -13,7 +15,7 @@ module.exports.passThreadControl = (sender_psid) => {
             recipient: {
                id: sender_psid,
             },
-            target_app_id: process.env.SECONDARY_RECEIVER_ID,
+            target_app_id: SECONDARY_RECEIVER_ID,
             metadata: "Pass thread control to inbox chat",
          };
 
