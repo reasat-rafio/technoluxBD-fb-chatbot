@@ -1,7 +1,7 @@
-const { sendCategories } = require("./chatbotService");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
 
+const { sendCategories } = require("./chatbotService");
 const SECONDARY_RECEIVER_ID = process.env.SECONDARY_RECEIVER_ID;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
@@ -36,7 +36,7 @@ module.exports.passThreadControl = (sender_psid) => {
                }
             }
          );
-         resolve("done!");
+         // resolve("done!");
       } catch (err) {
          reject(err);
       }
