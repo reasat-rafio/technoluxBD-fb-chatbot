@@ -59,7 +59,6 @@ module.exports.postWebHook = (req, res) => {
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function (entry) {
          // Gets the body of the webhook event
-         if (entry.standby) return;
          let webhook_event = entry.messaging[0];
          console.log(webhook_event);
 
@@ -201,6 +200,7 @@ let handlePostback = async (sender_psid, received_postback) => {
    // } else if (payload === "no") {
    // }
    // // Send the message to acknowledge the postback
+   await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {
@@ -239,6 +239,11 @@ module.exports.setInfoOrder = async (req, res) => {
       };
 
       let response2 = setInfoOrderTemplate();
+
+      // let response2 = {
+      //    text: `
+      //    `,
+      // };
 
       await sendMessage(req.body.psid, response1);
       await sendMessage(req.body.psid, response2);
