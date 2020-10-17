@@ -122,13 +122,13 @@ module.exports.sendHeadphonesTemplate = () => {
                   subtitle: "138 taka",
                   default_action: {
                      type: "web_url",
-                     url: "",
+                     url: "https://petersfancybrownhats.com/view?item=103",
                      webview_height_ratio: "tall",
                   },
                   buttons: [
                      {
                         type: "web_url",
-                        url: "",
+                        url: "https://petersfancybrownhats.com",
                         title: "Order Now",
                      },
                      {
@@ -145,13 +145,13 @@ module.exports.sendHeadphonesTemplate = () => {
                   subtitle: "137 taka",
                   default_action: {
                      type: "web_url",
-                     url: "",
+                     url: "https://petersfancybrownhats.com/view?item=103",
                      webview_height_ratio: "tall",
                   },
                   buttons: [
                      {
                         type: "web_url",
-                        url: "",
+                        url: "https://petersfancybrownhats.com",
                         title: "Order Now",
                      },
                      {

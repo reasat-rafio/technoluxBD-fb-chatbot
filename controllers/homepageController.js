@@ -154,6 +154,9 @@ let handlePostback = async (sender_psid, received_postback) => {
 
    switch (payload) {
       case "GET_STARTED":
+         await sendMessageWelcomeNewUser(sender_psid);
+         break;
+
       case "RESTART_CONVERSATION":
          await sendMessageWelcomeNewUser(sender_psid);
          break;

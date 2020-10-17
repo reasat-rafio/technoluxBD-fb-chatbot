@@ -99,7 +99,7 @@ module.exports.sendLookupOrder = (sender_psid) => {
 module.exports.requestTalkToAdmin = (sender_psid) => {
    return new Promise((resolve, reject) => {
       try {
-         resolve("done");
+         resolve("done!");
       } catch (err) {
          reject(err);
       }
@@ -121,7 +121,7 @@ module.exports.showHeadphones = (sender_psid) => {
 module.exports.showConsoles = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
       try {
-         resolve("done");
+         resolve("done!");
       } catch (err) {
          reject(err);
       }
