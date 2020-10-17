@@ -14,10 +14,11 @@ const {
    markMessageRead,
    sendTypingOn,
 } = require("./homePageService");
-const { passThreadControl } = require("./backToCategories");
+// const { passThreadControl } = require("./backToCategories");
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const SECONDARY_RECEIVER_ID = process.env.SECONDARY_RECEIVER_ID;
 
 module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
@@ -111,8 +112,35 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
 
          await sendMessage(sender_psid, response1);
          // Change the conversation to a page inbox
-         await passThreadControl(sender_psid);
+         // await passThreadControl(sender_psid);
+         ///////////
 
+         let request_body = {
+            recipient: {
+               id: sender_psid,
+            },
+            target_app_id: SECONDARY_RECEIVER_ID,
+            metadata: "String to pass to secondary receiver app",
+         };
+
+         // Send the HTTP request to the Messenger Platform
+         request(
+            {
+               uri: "https://graph.facebook.com/v6.0/me/pass_thread_control",
+               qs: { access_token: PAGE_ACCESS_TOKEN },
+               method: "POST",
+               json: request_body,
+            },
+            (err, res, body) => {
+               if (!err) {
+                  resolve("message sent!");
+               } else {
+                  reject("Unable to send message:" + err);
+               }
+            }
+         );
+
+         /////////////
          resolve("done!");
       } catch (err) {
          reject(err);
