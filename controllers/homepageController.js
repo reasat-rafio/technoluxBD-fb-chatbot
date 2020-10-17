@@ -58,7 +58,13 @@ module.exports.postWebHook = (req, res) => {
    if (body.object === "page") {
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function (entry) {
-         if (entry.standby) return;
+         if (entry.standby) {
+            // if user's message is "back" or "exit", turn on the bot again
+            console.log("----------------");
+            console.log(entry.standby);
+            console.log("----------------");
+            return;
+         }
          // Gets the body of the webhook event
          let webhook_event = entry.messaging[0];
          console.log(webhook_event);
