@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const request = require("request");
 const { sendMessage } = require("./chatboxSendMsg");
-const { passThreadControl } = require("./backToCategories");
+
 const {
    sendCategoriesTemplate,
    sendHeadphonesTemplate,
@@ -14,6 +14,7 @@ const {
    markMessageRead,
    sendTypingOn,
 } = require("./homePageService");
+const { passThreadControl } = require("./backToCategories");
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -111,6 +112,7 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
          await sendMessage(sender_psid, response1);
          // Change the conversation to a page inbox
          await passThreadControl(sender_psid);
+
          resolve("done!");
       } catch (err) {
          reject(err);
