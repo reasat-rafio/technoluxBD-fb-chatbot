@@ -14,7 +14,7 @@ const {
    markMessageRead,
    sendTypingOn,
 } = require("./homePageService");
-// const { passThreadControl } = require("./backToCategories");
+const { passThreadControl } = require("./backToCategories");
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
