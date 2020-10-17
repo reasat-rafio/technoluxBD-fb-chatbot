@@ -61,6 +61,14 @@ module.exports.postWebHook = (req, res) => {
          if (entry.standby) {
             // if user's message is "back" or "exit", turn on the bot again
             console.log("----------------");
+            let webhook_standby = entry.standby[0];
+            if (
+               webhook_standby.message.text === "back" ||
+               webhook_standby.message.text === "exit"
+            ) {
+               //call function to return the conversation to the primeary app
+               console.log("return here");
+            }
             console.log(entry.standby);
             console.log("----------------");
             return;
