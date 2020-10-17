@@ -19,6 +19,9 @@ const {
    markMessageRead,
    sendTypingOn,
 } = require("../services/homePageService");
+
+const { setInfoOrderTemplate } = require("../services/templateMessage");
+
 dotenv.config({ path: "../config/config.env" });
 
 module.exports.getHomepage = (req, res) => {
@@ -234,6 +237,8 @@ module.exports.setInfoOrder = async (req, res) => {
          \nAddress: ${req.body.address}
          \nOrder number: ${parseFloat(req.body.orderNumber)}`,
       };
+
+      let response = setInfoOrderTemplate();
 
       let response2 = {
          text: `We're checking your order. We will send you a message when the process is complete

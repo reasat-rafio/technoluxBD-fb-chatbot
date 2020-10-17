@@ -233,3 +233,25 @@ module.exports.backToMainMenuTemplate = () => {
       ],
    };
 };
+
+module.exports.setInfoOrderTemplate = () => {
+   let response = {
+      attachment: {
+         type: "template",
+         payload: {
+            template_type: "button",
+            text:
+               "We're checking your order. We will send you a message when the process is complete." +
+               "\nThank You!",
+
+            buttons: [
+               {
+                  type: "postback",
+                  title: "Main menu",
+                  payload: "BACK_TO_MAIN_MENU",
+               },
+            ],
+         },
+      },
+   };
+};
