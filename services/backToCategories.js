@@ -50,7 +50,7 @@ module.exports.backToCategories = (sender_psid) => {
 // };
 
 module.exports.passThreadControl = (sender_psid) => {
-   return new Promise(async (resolve, reject) => {
+   return new Promise((resolve, reject) => {
       try {
          // Construct the message body
          let request_body = {
@@ -79,6 +79,7 @@ module.exports.passThreadControl = (sender_psid) => {
          );
          // resolve("done!");
       } catch (e) {
+         console.log("err", e);
          reject(e);
       }
    });
