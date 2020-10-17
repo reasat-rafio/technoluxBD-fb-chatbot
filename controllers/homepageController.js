@@ -230,15 +230,17 @@ module.exports.setInfoOrder = async (req, res) => {
       let response1 = {
          text: `--- Info about your lookup order ---
          \n\nCustomer name: ${customerName}
-         \nPhone Number: ${req.body.phoneNumber}
+         \nPhone Number: ${parseFloat(req.body.phoneNumber)}
          \nAddress: ${req.body.address}
-         \nOrder number: ${req.body.orderNumber}`,
+         \nOrder number: ${parseFloat(req.body.orderNumber)}`,
       };
+
       let response2 = {
          text: `We're checking your order. We will send you a message when the process is complete
          Thank You!
          `,
       };
+
       await sendMessage(req.body.psid, response1);
       await sendMessage(req.body.psid, response2);
       return res.status(200).json({
