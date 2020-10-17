@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
 
 const SECONDARY_RECEIVER_ID = process.env.SECONDARY_RECEIVER_ID;
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 module.exports.backToCategories = (sender_psid) => {
    sendCategories(sender_psid);

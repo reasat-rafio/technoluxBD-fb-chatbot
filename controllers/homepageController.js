@@ -240,11 +240,6 @@ module.exports.setInfoOrder = async (req, res) => {
 
       let response2 = setInfoOrderTemplate();
 
-      // let response2 = {
-      //    text: `
-      //    `,
-      // };
-
       await sendMessage(req.body.psid, response1);
       await sendMessage(req.body.psid, response2);
       return res.status(200).json({
@@ -254,5 +249,3 @@ module.exports.setInfoOrder = async (req, res) => {
       console.log(err);
    }
 };
-
-// curl -X GET "localhost:8080/webhook?hub.verify_token=itIsAsdasd&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
