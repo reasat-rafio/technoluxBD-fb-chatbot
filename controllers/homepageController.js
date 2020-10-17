@@ -58,6 +58,7 @@ module.exports.postWebHook = (req, res) => {
    if (body.object === "page") {
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function (entry) {
+         if (entry.standby) return;
          // Gets the body of the webhook event
          let webhook_event = entry.messaging[0];
          console.log(webhook_event);
@@ -200,7 +201,6 @@ let handlePostback = async (sender_psid, received_postback) => {
    // } else if (payload === "no") {
    // }
    // // Send the message to acknowledge the postback
-   await sendMessage(sender_psid, response);
 };
 
 module.exports.handleSetupFunction = async (req, res) => {
