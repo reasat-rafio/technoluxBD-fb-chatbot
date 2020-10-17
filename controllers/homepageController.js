@@ -239,8 +239,8 @@ module.exports.setInfoOrder = async (req, res) => {
          Thank You!
          `,
       };
-      await chatbotService.sendMessage(req.body.psid, response1);
-      await chatbotService.sendMessage(req.body.psid, response2);
+      await sendMessage(req.body.psid, response1);
+      await sendMessage(req.body.psid, response2);
       return res.status(200).json({
          message: "ok",
       });
