@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const request = require("request");
 const { sendMessage } = require("./chatboxSendMsg");
-
+const { passThreadControl } = require("./backToCategories");
 const {
    sendCategoriesTemplate,
    sendHeadphonesTemplate,
@@ -101,8 +101,16 @@ module.exports.sendLookupOrder = (sender_psid) => {
 };
 
 module.exports.requestTalkToAdmin = (sender_psid) => {
-   return new Promise((resolve, reject) => {
+   return new Promise(async (resolve, reject) => {
       try {
+         // send a test msg
+         let response1 = {
+            text: "Someone real will be with you in a few minutes ^^",
+         };
+
+         await sendMessage(sender_psid, response1);
+         // Change the conversation to a page inbox
+         await passThreadControl(sender_psid);
          resolve("done!");
       } catch (err) {
          reject(err);
