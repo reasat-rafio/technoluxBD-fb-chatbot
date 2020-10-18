@@ -133,7 +133,7 @@ module.exports.postWebHook = (req, res) => {
          } else if (webhook_event.postback) {
             handlePostback(sender_psid, webhook_event.postback);
          }
-      });
+      };
 
       // Returns a '200 OK' response to all requests
       res.status(200).send("EVENT_RECEIVED");
