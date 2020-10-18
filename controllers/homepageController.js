@@ -10,6 +10,7 @@ const {
    showControllers,
    setInfoOrderByWebView,
    backToMainMenu,
+   takeControlConversation,
 } = require("../services/chatbotService");
 const { sendMessage } = require("../services/chatboxSendMsg");
 
@@ -114,9 +115,7 @@ module.exports.postWebHook = (req, res) => {
                         reject(err);
                      }
                   });
-               }
-            }
-
+                  takeControlConversation(webhook_standby.sender.id)
             console.log(entry.standby);
             return;
          }

@@ -164,6 +164,40 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
    });
 };
 
+module.exports.takeControlConversation = (sender_psid) => {
+   return new Promise(async (resolve, reject) => {
+      try {
+         let request_body = {
+            recipient: {
+               id: sender_psid,
+            },
+
+            metadata: "Pass this conversation to bot -primary",
+         };
+
+         // Send the HTTP request to the Messenger Platform
+         request(
+            {
+               uri: "https://graph.facebook.com/v6.0/me/take_thread_control",
+               qs: { access_token: PAGE_ACCESS_TOKEN },
+               method: "POST",
+               json: request_body,
+            },
+            async (err, res, body) => {
+               if (!err) {
+                  await sendMessage(sender_psid, { text: "The bot is back!" });
+                  await this.backToMainMenu(sender_psid);
+                  resolve("message sent!");
+               } else {
+                  reject("Unable to send message:" + err);
+               }
+            }
+         );
+      } catch (err) {
+         reject(err);
+      }
+   });
+};
 module.exports.showHeadphones = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
       try {
