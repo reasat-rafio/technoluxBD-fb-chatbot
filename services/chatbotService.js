@@ -14,6 +14,7 @@ const {
    markMessageRead,
    sendTypingOn,
 } = require("./homePageService");
+const { backToMainMenu } = require("./backToCategories");
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -186,7 +187,7 @@ module.exports.takeControlConversation = (sender_psid) => {
             async (err, res, body) => {
                if (!err) {
                   await sendMessage(sender_psid, { text: "The bot is back!" });
-                  await this.backToMainMenu(sender_psid);
+                  await backToMainMenu(sender_psid);
                   resolve("message sent!");
                } else {
                   reject("Unable to send message:" + err);
@@ -233,18 +234,6 @@ module.exports.showControllers = (sender_psid) => {
 module.exports.setInfoOrderByWebView = (sender_psid) => {
    return new Promise((resolve, reject) => {
       try {
-         resolve("done!");
-      } catch (err) {
-         reject(err);
-      }
-   });
-};
-
-module.exports.backToMainMenu = (sender_psid) => {
-   return new Promise(async (resolve, reject) => {
-      try {
-         let response = backToMainMenuTemplate();
-         await sendMessage(sender_psid, response);
          resolve("done!");
       } catch (err) {
          reject(err);
