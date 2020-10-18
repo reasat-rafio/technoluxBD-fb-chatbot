@@ -1,5 +1,6 @@
 const { sendCategories } = require("./chatbotService");
 const dotenv = require("dotenv");
+const { backToMainMenuTemplate } = require("./templateMessage");
 dotenv.config({ path: "../config/config.env" });
 
 module.exports.backToCategories = (sender_psid) => {
