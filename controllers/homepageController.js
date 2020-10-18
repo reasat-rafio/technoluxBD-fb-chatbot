@@ -21,7 +21,10 @@ const {
    sendTypingOn,
 } = require("../services/homePageService");
 
-const { setInfoOrderTemplate } = require("../services/templateMessage");
+const {
+   setInfoOrderTemplate,
+   backToMainMenuTemplate,
+} = require("../services/templateMessage");
 
 dotenv.config({ path: "../config/config.env" });
 
@@ -167,48 +170,58 @@ let handleMessage = async (sender_psid, received_message) => {
       return;
    }
 
-   let response;
+   // // let response;
 
-   // Check if the message contains text
-   if (received_message.text) {
-      // Create the payload for a basic text message
-      response = {
-         text: `You sent the message: "${received_message.text}". Now send me an image!`,
-      };
-   } else if (received_message.attachments) {
-      // Get the URL of the message attachment
-      let attachment_url = received_message.attachments[0].payload.url;
-      response = {
-         attachment: {
-            type: "template",
-            payload: {
-               template_type: "generic",
-               elements: [
-                  {
-                     title: "Is this the right picture?",
-                     subtitle: "Tap a button to answer.",
-                     image_url: attachment_url,
-                     buttons: [
-                        {
-                           type: "postback",
-                           title: "Yes!",
-                           payload: "yes",
-                        },
-                        {
-                           type: "postback",
-                           title: "No!",
-                           payload: "no",
-                        },
-                     ],
-                  },
-               ],
-            },
-         },
-      };
-   }
+   // // Check if the message contains text
+   // if (received_message.text) {
+   //    // Create the payload for a basic text message
+   //    // response = {
+   //    //    text: `Our admins will inform you soon. Thank you`,
+   //    // };
+   // } else if (received_message.attachments) {
+   //    // Get the URL of the message attachment
+   //    // let attachment_url = received_message.attachments[0].payload.url;
+   //    // response = {
+   //    //    attachment: {
+   //    //       type: "template",
+   //    //       payload: {
+   //    //          template_type: "generic",
+   //    //          elements: [
+   //    //             {
+   //    //                title: "Is this the right picture?",
+   //    //                subtitle: "Tap a button to answer.",
+   //    //                image_url: attachment_url,
+   //    //                buttons: [
+   //    //                   {
+   //    //                      type: "postback",
+   //    //                      title: "Yes!",
+   //    //                      payload: "yes",
+   //    //                   },
+   //    //                   {
+   //    //                      type: "postback",
+   //    //                      title: "No!",
+   //    //                      payload: "no",
+   //    //                   },
+   //    //                ],
+   //    //             },
+   //    //          ],
+   //    //       },
+   //    //    },
+   //    // };
+   // }
 
-   // Sends the response message
-   await sendMessage(sender_psid, response);
+   // // Sends the response message
+   // // await sendMessage(sender_psid, response);
+
+   new Promise(async (resolve, reject) => {
+      try {
+         let response = backToMainMenuTemplate();
+         await sendMessage(sender_psid, response);
+         resolve("done!");
+      } catch (err) {
+         reject(err);
+      }
+   });
 };
 
 // Handles messaging_postbacks events
