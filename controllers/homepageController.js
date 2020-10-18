@@ -60,7 +60,7 @@ module.exports.postWebHook = (req, res) => {
       body.entry.forEach(function (entry) {
          if (entry.standby) {
             // if user's message is "back" or "exit", turn on the bot again
-            console.log("----------------");
+
             let webhook_standby = entry.standby[0];
             if (webhook_standby && webhook_standby.message) {
                if (
@@ -68,7 +68,52 @@ module.exports.postWebHook = (req, res) => {
                   webhook_standby.message.text === "exit"
                ) {
                   //call function to return the conversation to the primeary app
-                  console.log("return here");
+                  let sender_psid = webhook_standby.sender.id;
+                  let app = "primary";
+                  new Promise(async (resolve, reject) => {
+                     try {
+                        let target_app_id = "";
+                        let metadata = "";
+
+                        if (app === "page_inbox") {
+                           target_app_id = SECONDARY_RECEIVER_ID;
+                           metadata = "Pass thread control to inbox chat";
+                        }
+                        if (app === "primary") {
+                           target_app_id = PRIMARY_RECEIVER_ID;
+                           metadata =
+                              "Pass thread control to the bot, primary app";
+                        }
+
+                        let request_body = {
+                           recipient: {
+                              id: sender_psid,
+                           },
+                           target_app_id: target_app_id,
+                           metadata: metadata,
+                        };
+
+                        // Send the HTTP request to the Messenger Platform
+                        request(
+                           {
+                              uri:
+                                 "https://graph.facebook.com/v6.0/me/pass_thread_control",
+                              qs: { access_token: PAGE_ACCESS_TOKEN },
+                              method: "POST",
+                              json: request_body,
+                           },
+                           (err, res, body) => {
+                              if (!err) {
+                                 resolve("message sent!");
+                              } else {
+                                 reject("Unable to send message:" + err);
+                              }
+                           }
+                        );
+                     } catch (err) {
+                        reject(err);
+                     }
+                  });
                }
             }
 
