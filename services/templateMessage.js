@@ -244,9 +244,8 @@ module.exports.setInfoOrderTemplate = () => {
          type: "template",
          payload: {
             template_type: "button",
-            text:
-               "We're checking your order. We will send you a message when the process is complete." +
-               "\nThank You!",
+            text: `We're checking your order. We will send you a message when the process is complete." 
+               Thank You! ♥`,
 
             buttons: [
                {

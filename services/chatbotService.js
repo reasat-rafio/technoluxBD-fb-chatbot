@@ -26,7 +26,7 @@ module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
          let username = await getFacebookUsername(sender_psid);
          //  send text message
          let response1 = {
-            text: `Hi ${username}! Welcome to TechonoluxBD, where you will find the best deal for your needs.`,
+            text: `Hi ${username}! 😀 Welcome to TechonoluxBD, where you will find the best deal for your needs. 🙌`,
          };
 
          let response2 = {
@@ -39,8 +39,7 @@ module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
          };
 
          let response3 = {
-            text:
-               "At any times, use the menu below to navigate through the features",
+            text: "I am a bot build by technoluxBD 🤖",
          };
 
          // Send a quick reply
@@ -54,7 +53,7 @@ module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
                },
                {
                   content_type: "text",
-                  title: "Lookup Order",
+                  title: "Submit your info",
                   payload: "LOOKUP_ORDER",
                },
                {
@@ -107,7 +106,11 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
       try {
          // send a test msg
          let response1 = {
-            text: "Someone real will be with you in a few minutes ^^",
+            text: `You've turned off the bot 😴.
+            Our admins will be with you in a few mins 😁
+            
+            To enable the bot again, send a message:
+            👉"back" or "exit"👈`,
          };
 
          await sendMessage(sender_psid, response1);

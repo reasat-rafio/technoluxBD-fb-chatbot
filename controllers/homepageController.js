@@ -293,19 +293,14 @@ module.exports.setInfoOrder = async (req, res) => {
       } else customerName = req.body.customerName;
 
       let response1 = {
-         text: `--- Info about your lookup order ---
-         \n\nCustomer name: ${customerName}
-         \nPhone Number: ${parseFloat(req.body.phoneNumber)}
-         \nAddress: ${req.body.address}
-         \nOrder number: ${parseFloat(req.body.orderNumber)}`,
+         text: `--- Your submitted info ---
+         \nName: ${customerName} 😀
+         \nPhone Number: ${parseFloat(req.body.phoneNumber)} 📱
+         \nAddress: ${req.body.address} 🏡
+         \nQuantity: ${parseFloat(req.body.orderNumber)} 🔢`,
       };
 
       let response2 = setInfoOrderTemplate();
-
-      // let response2 = {
-      //    text: `
-      //    `,
-      // };
 
       await sendMessage(req.body.psid, response1);
       await sendMessage(req.body.psid, response2);

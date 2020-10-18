@@ -19,25 +19,19 @@ module.exports.handleSetupProfileAPI = () => {
                   call_to_actions: [
                      {
                         type: "postback",
-                        title: "Talk to an agent",
+                        title: "Talk To An Admin",
                         payload: "TALK_ADMIN",
                      },
                      {
                         type: "postback",
-                        title: "Restart this conversation",
+                        title: "Restart This Conversation",
                         payload: "RESTART_CONVERSATION",
                      },
                      {
                         type: "web_url",
-                        title: "View facebook fan page",
-                        url: "https://www.originalcoastclothing.com/",
-                        webview_height_ratio: "full",
-                     },
-                     {
-                        type: "web_url",
-                        title: "View YouTube channel",
+                        title: "View Our Facebook Group",
                         url:
-                           "https://www.youtube.com/channel/UCH4WQMyJpp1X6TsNSVSokoA",
+                           "https://www.facebook.com/groups/353898022604624/members",
                         webview_height_ratio: "full",
                      },
                   ],
