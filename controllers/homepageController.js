@@ -115,7 +115,10 @@ module.exports.postWebHook = (req, res) => {
                         reject(err);
                      }
                   });
-                  takeControlConversation(webhook_standby.sender.id)
+                  takeControlConversation(webhook_standby.sender.id);
+               }
+            }
+
             console.log(entry.standby);
             return;
          }
@@ -133,7 +136,7 @@ module.exports.postWebHook = (req, res) => {
          } else if (webhook_event.postback) {
             handlePostback(sender_psid, webhook_event.postback);
          }
-      };
+      });
 
       // Returns a '200 OK' response to all requests
       res.status(200).send("EVENT_RECEIVED");
