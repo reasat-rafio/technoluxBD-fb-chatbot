@@ -17,6 +17,8 @@ const {
 dotenv.config({ path: "../config/config.env" });
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const SECONDARY_RECEIVER_ID = process.env.SECONDARY_RECEIVER_ID;
+const PRIMARY_RECEIVER_ID = process.env.FACEBOOK_APP_ID;
 
 module.exports.sendMessageWelcomeNewUser = (sender_psid) => {
    return new Promise(async (resolve, reject) => {
@@ -110,37 +112,10 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
 
          await sendMessage(sender_psid, response1);
          // Change the conversation to a page inbox
-         new Promise(async (resolve, reject) => {
-            try {
-               let request_body = {
-                  recipient: {
-                     id: sender_psid,
-                  },
-                  target_app_id: process.env.SECONDARY_RECEIVER_ID,
-                  metadata: "Pass thread control to inbox chat",
-               };
+         let app = "page_inbox";
 
-               // Send the HTTP request to the Messenger Platform
-               request(
-                  {
-                     uri:
-                        "https://graph.facebook.com/v6.0/me/pass_thread_control",
-                     qs: { access_token: PAGE_ACCESS_TOKEN },
-                     method: "POST",
-                     json: request_body,
-                  },
-                  (err, res, body) => {
-                     if (!err) {
-                        resolve("message sent!");
-                     } else {
-                        reject("Unable to send message:" + err);
-                     }
-                  }
-               );
-            } catch (err) {
-               reject(err);
-            }
-         });
+         await passThreadControl(sender_psid, app);
+
          resolve("done!");
       } catch (err) {
          reject(err);
