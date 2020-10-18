@@ -30,8 +30,7 @@ module.exports.handleSetupProfileAPI = () => {
                      {
                         type: "web_url",
                         title: "View Our Facebook Group",
-                        url:
-                           "https://www.facebook.com/groups/353898022604624/members",
+                        url: "https://www.facebook.com/groups/353898022604624",
                         webview_height_ratio: "full",
                      },
                   ],

@@ -306,11 +306,11 @@ module.exports.setInfoOrder = async (req, res) => {
       } else customerName = req.body.customerName;
 
       let response1 = {
-         text: `--- Your submitted info ---
+         text: `---Your submitted info---
          \nName: ${customerName} 😀
-         \nPhone Number: ${parseFloat(req.body.phoneNumber)} 📱
-         \nAddress: ${req.body.address} 🏡
-         \nQuantity: ${parseFloat(req.body.orderNumber)} 🔢`,
+         \nPhone Number: 📱 ${parseFloat(req.body.phoneNumber)}
+         \nAddress: 🏡 ${req.body.address}
+         \nQuantity: 🔢 ${parseFloat(req.body.orderNumber)}`,
       };
 
       let response2 = setInfoOrderTemplate();

@@ -107,10 +107,10 @@ module.exports.requestTalkToAdmin = (sender_psid) => {
          // send a test msg
          let response1 = {
             text: `You've turned off the bot 😴.
-            Our admins will be with you in a few mins 😁
+Our admins will be with you in a few mins 😁
             
-            To enable the bot again, send a message:
-            👉"back" or "exit"👈`,
+To enable the bot again, send a message:
+👉"back" or "exit"👈`,
          };
 
          await sendMessage(sender_psid, response1);
@@ -188,7 +188,9 @@ module.exports.takeControlConversation = (sender_psid) => {
             },
             async (err, res, body) => {
                if (!err) {
-                  await sendMessage(sender_psid, { text: "The bot is back!" });
+                  await sendMessage(sender_psid, {
+                     text: "The bot is back!!! 🤖",
+                  });
 
                   await new Promise(async (resolve, reject) => {
                      try {
